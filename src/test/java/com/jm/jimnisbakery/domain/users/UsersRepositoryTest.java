@@ -20,9 +20,9 @@ public class UsersRepositoryTest {
 
     @Autowired
     UsersRepository usersRepository;
-    
+
     @Test
-    public void userInsertTest(){
+    public void InsertUserTest(){
         //given
         String name = "ted";
         String password = "test";
