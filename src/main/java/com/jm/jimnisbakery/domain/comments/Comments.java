@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.Length;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -26,13 +27,13 @@ public class Comments {
     @Column(length = 200)
     private String description;
 
-    @Column
-    private LocalDate createdAt;
+    @CreatedDate
+    private LocalDateTime createdAt;
 
-    @Column
-    private LocalDate updatedAt;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
-    @Builder Comments(Long userId, Long breadId, String description, LocalDate createdAt, LocalDate updatedAt){
+    @Builder Comments(Long userId, Long breadId, String description, LocalDateTime createdAt, LocalDateTime updatedAt){
         this.userId = userId;
         this. breadId = breadId;
         this.description = description;
