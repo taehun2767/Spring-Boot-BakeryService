@@ -25,13 +25,13 @@ public class Breads {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 40, nullable = false)
+    @Column(length = 32, nullable = false)
     private String title;
 
     @Column(nullable = false)
     private String description;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 256)
     private String thumbnailUrl;
 
     @ColumnDefault("0")

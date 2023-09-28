@@ -13,27 +13,28 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(length = 32, nullable = false)
     private String name;
 
-    @Column(length = 64, nullable = false)
-    private String password;
+    @Column(length = 256, nullable = false)
+    private String loginToken;
 
-    @Column(length = 64, nullable = false)
+    @Column(length = 64)
     private String email;
 
-    @Column(length = 64, nullable = false)
+    @Column(length = 64)
     private String snsId;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 32)
     private String phoneNumber;
 
-    @Column(length =128, nullable = false)
+    @Column(length =256)
     private String address;
 
-    @Builder Users(String name, String password, String email, String snsId, String phoneNumber, String address){
+    @Builder Users(String name, String loginToken, String email, String snsId, String phoneNumber, String address){
         this.name = name;
-        this.password = password;
+        this.loginToken = loginToken;
         this.email = email;
         this.snsId = snsId;
         this.phoneNumber = phoneNumber;

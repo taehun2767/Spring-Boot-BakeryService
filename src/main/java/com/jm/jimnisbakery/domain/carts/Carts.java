@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @NoArgsConstructor
@@ -14,16 +15,16 @@ public class Carts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private Long userId;
 
-    @Column
+    @Column(nullable = false)
     private Long breadId;
 
-    @Column
+    @ColumnDefault("0")
+    @Column(nullable = false)
     private int itemCount;
-
-
+    
     @Builder Carts(Long userId, Long breadId, int itemCount){
         this.userId = userId;
         this.breadId = breadId;
