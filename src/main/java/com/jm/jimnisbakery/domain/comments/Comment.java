@@ -1,5 +1,7 @@
 package com.jm.jimnisbakery.domain.comments;
 
+import com.jm.jimnisbakery.domain.breads.Bread;
+import com.jm.jimnisbakery.domain.users.User;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,16 +15,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "comments")
-public class Comments {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Long userId;
+    @ManyToOne
+    private User user;
 
-    @Column
-    private Long breadId;
+    @ManyToOne
+    private Bread bread;
 
     @Column(length = 200)
     private String description;
@@ -33,9 +35,10 @@ public class Comments {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @Builder Comments(Long userId, Long breadId, String description, LocalDateTime createdAt, LocalDateTime updatedAt){
-        this.userId = userId;
-        this. breadId = breadId;
+    @Builder
+    Comment(User user, Bread bread, String description, LocalDateTime createdAt, LocalDateTime updatedAt){
+        this.user = user;
+        this. bread = bread;
         this.description = description;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

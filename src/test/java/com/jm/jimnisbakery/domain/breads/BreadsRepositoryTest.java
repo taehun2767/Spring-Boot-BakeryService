@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +16,7 @@ import static org.assertj.core.api.Assertions.fail;
 @SpringBootTest
 public class BreadsRepositoryTest {
     @Autowired
-    BreadsRepository breadsRepository;
+    BreadRepository breadsRepository;
 
     @Test
     public void InsertBreadTest() {
@@ -30,7 +29,7 @@ public class BreadsRepositoryTest {
         String createdBy = "admin";
 
 
-        Breads insertedBread = breadsRepository.save(Breads.builder()
+        Bread insertedBread = breadsRepository.save(Bread.builder()
                         .title(title)
                         .description(description)
                         .thumbnailUrl(thumbnailUrl)
@@ -39,7 +38,7 @@ public class BreadsRepositoryTest {
                         .updatedAt(updatedAt)
                         .createdBy(createdBy)
                         .build());
-        Breads bread = breadsRepository.findById(insertedBread.getId()).orElse(null);
+        Bread bread = breadsRepository.findById(insertedBread.getId()).orElse(null);
 
         if(bread == null)
             fail("failed to insert bread");

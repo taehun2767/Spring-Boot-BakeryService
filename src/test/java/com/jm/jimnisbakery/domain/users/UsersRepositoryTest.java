@@ -1,15 +1,10 @@
 package com.jm.jimnisbakery.domain.users;
 
-import org.assertj.core.api.Fail;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -19,7 +14,7 @@ import static org.assertj.core.api.Assertions.fail;
 public class UsersRepositoryTest {
 
     @Autowired
-    UsersRepository usersRepository;
+    UserRepository usersRepository;
 
     @Test
     public void InsertUserTest(){
@@ -31,7 +26,7 @@ public class UsersRepositoryTest {
         String phoneNumber = "010-0000-0000";
         String address = "testAddress";
 
-        Users insertedUser = usersRepository.save(Users.builder()
+        User insertedUser = usersRepository.save(User.builder()
                 .name(name)
                 .loginToken(loginToken)
                 .email(email)
@@ -41,7 +36,7 @@ public class UsersRepositoryTest {
                 .build());
 
         //when
-        Users user = usersRepository.findById(insertedUser.getId()).orElse(null);
+        User user = usersRepository.findById(insertedUser.getId()).orElse(null);
 
         if(user == null)
             fail("failed to insert user");

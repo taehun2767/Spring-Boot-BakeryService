@@ -5,21 +5,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.cglib.core.Local;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @NoArgsConstructor
 @Entity
 @Table(name="breads")
-public class Breads {
+public class Bread {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +41,8 @@ public class Breads {
     //for admin
     private String createdBy;
 
-    @Builder Breads(String title, String description, String thumbnailUrl, Integer viewOrder, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy){
+    @Builder
+    Bread(String title, String description, String thumbnailUrl, Integer viewOrder, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy){
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;

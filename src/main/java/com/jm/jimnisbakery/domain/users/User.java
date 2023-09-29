@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +32,8 @@ public class Users {
     @Column(length =256)
     private String address;
 
-    @Builder Users(String name, String loginToken, String email, String snsId, String phoneNumber, String address){
+    @Builder
+    User(String name, String loginToken, String email, String snsId, String phoneNumber, String address){
         this.name = name;
         this.loginToken = loginToken;
         this.email = email;
