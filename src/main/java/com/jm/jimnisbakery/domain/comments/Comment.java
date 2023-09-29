@@ -3,6 +3,7 @@ package com.jm.jimnisbakery.domain.comments;
 import com.jm.jimnisbakery.domain.breads.Bread;
 import com.jm.jimnisbakery.domain.users.User;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.Fetch;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +21,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Bread bread;
 
     @Column(length = 200)
