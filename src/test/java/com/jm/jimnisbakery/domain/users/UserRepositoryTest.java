@@ -1,6 +1,7 @@
 package com.jm.jimnisbakery.domain.users;
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,22 +12,23 @@ import static org.assertj.core.api.Assertions.fail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UsersRepositoryTest {
+public class UserRepositoryTest {
 
     @Autowired
-    UserRepository usersRepository;
+    UserRepository userRepository;
 
     @Test
-    public void InsertUserTest(){
+    @DisplayName("유저 생성")
+    public void createUser(){
         //given
         String name = "ted";
         String loginToken = "testToken";
-        String email = "abc2767@snu.ac.kr";
-        String snsId = "zxc2876@naver.com";
+        String email = "test@snu.ac.kr";
+        String snsId = "test@naver.com";
         String phoneNumber = "010-0000-0000";
         String address = "testAddress";
 
-        User insertedUser = usersRepository.save(User.builder()
+        User insertedUser = userRepository.save(User.builder()
                 .name(name)
                 .loginToken(loginToken)
                 .email(email)
@@ -36,7 +38,7 @@ public class UsersRepositoryTest {
                 .build());
 
         //when
-        User user = usersRepository.findById(insertedUser.getId()).orElse(null);
+        User user = userRepository.findById(insertedUser.getId()).orElse(null);
 
         if(user == null)
             fail("failed to insert user");
@@ -48,4 +50,5 @@ public class UsersRepositoryTest {
         assertThat(user.getPhoneNumber()).isEqualTo(phoneNumber);
         assertThat(user.getAddress()).isEqualTo(address);
     }
+
 }

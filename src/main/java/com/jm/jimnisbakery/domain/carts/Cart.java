@@ -23,8 +23,7 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Builder.Default
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Bread> breads;
 
     @ColumnDefault("0")

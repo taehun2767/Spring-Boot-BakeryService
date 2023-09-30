@@ -1,5 +1,6 @@
 package com.jm.jimnisbakery.domain.users;
 
+import com.jm.jimnisbakery.domain.carts.Cart;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +32,9 @@ public class User {
 
     @Column(length =256)
     private String address;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    private Cart cart;
 
     @Builder
     User(String name, String loginToken, String email, String snsId, String phoneNumber, String address){

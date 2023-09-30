@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -23,7 +24,7 @@ public class Bread {
     @Column(length = 32, nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
     @Column(length = 256)
@@ -33,16 +34,16 @@ public class Bread {
     private Integer viewOrder;
 
     @CreatedDate
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private LocalDate updatedAt;
 
     //for admin
     private String createdBy;
 
     @Builder
-    Bread(String title, String description, String thumbnailUrl, Integer viewOrder, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy){
+    Bread(String title, String description, String thumbnailUrl, Integer viewOrder, LocalDate createdAt, LocalDate updatedAt, String createdBy){
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
