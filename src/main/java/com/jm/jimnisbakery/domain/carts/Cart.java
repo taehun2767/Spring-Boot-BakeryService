@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hashids.Hashids;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.util.List;
@@ -16,6 +17,20 @@ import java.util.List;
 @Table(name = "carts")
 //TODO cascade 및 N + 1 문제 공부 후 적용
 public class Cart {
+
+    private static Hashids hashids = new Hashids("this is my salt for carts", 6);
+    public static String EncodeId(Long id){
+        return hashids.encode(id);
+    }
+
+    public static Long TryDecodeId(String hashId){
+        long[] ids = hashids.decode(hashId);
+        if(ids == null || ids.length < 1)
+            return -1L;
+
+        return ids[0];
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

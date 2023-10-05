@@ -24,9 +24,19 @@ public class BreadService {
 
 
     //TODO 빵 세부 사항 가져오기
-    public Bread GetById(){
+    //public Bread GetById(){}
 
-    }
+
+    /*
+     * 어드민
+     */
+    //TODO 빵 생성
+
+    //TODO 빵 정보 수정
+
+    //TODO 빵 삭제
+
+
 
 
 }

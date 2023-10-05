@@ -1,10 +1,10 @@
 package com.jm.jimnisbakery.domain.users;
 
-import com.jm.jimnisbakery.domain.carts.Cart;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hashids.Hashids;
 
 @Getter
 @NoArgsConstructor
@@ -12,6 +12,20 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 //TODO cascade 및 N + 1 문제 공부 후 적용
 public class User {
+
+    private static Hashids hashids = new Hashids("this is my salt for breads", 6);
+    public static String EncodeId(Long id){
+        return hashids.encode(id);
+    }
+
+    public static Long TryDecodeId(String hashId){
+        long[] ids = hashids.decode(hashId);
+        if(ids == null || ids.length < 1)
+            return -1L;
+
+        return ids[0];
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -57,8 +57,8 @@ public class CommentRepositoryTest {
         String thumbnailUrl = "thumbnailUrl test";
         Integer remainingQuantity = 1;
         Integer viewOrder = 1;
-        LocalDate createdAt = LocalDate.now();
-        LocalDate updatedAt = LocalDate.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        LocalDateTime updatedAt = LocalDateTime.now();
         String createdBy = "admin";
 
 

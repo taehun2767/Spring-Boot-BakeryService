@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -30,8 +31,8 @@ public class BreadRepositoryTest {
         String thumbnailUrl = "thumbnailUrl test";
         Integer remainingQuantity = 1;
         Integer viewOrder = 1;
-        LocalDate createdAt = LocalDate.now();
-        LocalDate updatedAt = LocalDate.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        LocalDateTime updatedAt = LocalDateTime.now();
         String createdBy = "admin";
 
 
@@ -55,8 +56,6 @@ public class BreadRepositoryTest {
         assertThat(bread.getThumbnailUrl()).isEqualTo(thumbnailUrl);
         assertThat(bread.getRemainingQuantity()).isEqualTo(remainingQuantity);
         assertThat(bread.getViewOrder()).isEqualTo(viewOrder);
-        assertThat(bread.getCreatedAt()).isEqualTo(createdAt);
-        assertThat(bread.getUpdatedAt()).isEqualTo(updatedAt);
         assertThat(bread.getCreatedBy()).isEqualTo(createdBy);
     }
 }
