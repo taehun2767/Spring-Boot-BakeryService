@@ -1,5 +1,6 @@
 package com.jm.jimnisbakery.domain.breads;
 
+import jakarta.transaction.Transactional;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -15,7 +16,9 @@ import static org.assertj.core.api.Assertions.fail;
 
     @RunWith(SpringRunner.class)
     @SpringBootTest
+    @Transactional
 public class BreadRepositoryTest {
+
     @Autowired
     BreadRepository breadRepository;
 

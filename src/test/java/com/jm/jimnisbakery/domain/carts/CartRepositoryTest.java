@@ -8,6 +8,7 @@ import com.jm.jimnisbakery.domain.users.UserRepository;
 import jakarta.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class CartRepositoryTest {
 
     @Autowired
@@ -30,7 +32,7 @@ public class CartRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    @Transactional
+    @DisplayName("장바구니 생성")
     public void CreateCart(){
         //given
         String name = "ted";

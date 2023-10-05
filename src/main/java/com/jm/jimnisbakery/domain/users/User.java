@@ -33,9 +33,6 @@ public class User {
     @Column(length =256)
     private String address;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-    private Cart cart;
-
     @Builder
     User(String name, String loginToken, String email, String snsId, String phoneNumber, String address){
         this.name = name;
