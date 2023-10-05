@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "comments")
+//TODO cascade 및 N + 1 문제 공부 후 적용
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

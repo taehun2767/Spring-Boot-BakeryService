@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "carts")
+//TODO cascade 및 N + 1 문제 공부 후 적용
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

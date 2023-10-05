@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+//TODO cascade 및 N + 1 문제 공부 후 적용
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
