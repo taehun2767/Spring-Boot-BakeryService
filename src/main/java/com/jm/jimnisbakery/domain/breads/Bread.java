@@ -33,6 +33,9 @@ public class Bread {
     @ColumnDefault("0")
     private Integer viewOrder;
 
+    @ColumnDefault("0")
+    private Integer remainingQuantity;
+
     @CreatedDate
     private LocalDate createdAt;
 
@@ -43,10 +46,11 @@ public class Bread {
     private String createdBy;
 
     @Builder
-    Bread(String title, String description, String thumbnailUrl, Integer viewOrder, LocalDate createdAt, LocalDate updatedAt, String createdBy){
+    Bread(String title, String description, String thumbnailUrl, Integer remainingQuantity, Integer viewOrder, LocalDate createdAt, LocalDate updatedAt, String createdBy){
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
+        this.remainingQuantity = remainingQuantity;
         this.viewOrder = viewOrder;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

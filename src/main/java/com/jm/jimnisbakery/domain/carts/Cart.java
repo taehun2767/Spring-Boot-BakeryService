@@ -23,17 +23,18 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Bread> breads;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bread_id")
+    private Bread bread;
 
     @ColumnDefault("0")
     @Column(nullable = false)
     private int itemCount;
 
     @Builder
-    Cart(User user, List<Bread> breads, int itemCount){
+    Cart(User user, Bread bread, int itemCount){
         this.user = user;
-        this.breads = breads;
+        this.bread = bread;
         this.itemCount = itemCount;
     }
 }

@@ -19,7 +19,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("유저 생성")
-    public void createUser(){
+    public void CreateUser(){
         //given
         String name = "ted";
         String loginToken = "testToken";

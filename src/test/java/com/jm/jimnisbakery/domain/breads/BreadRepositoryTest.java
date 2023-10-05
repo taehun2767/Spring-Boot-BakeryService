@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -23,10 +21,11 @@ public class BreadRepositoryTest {
 
     @Test
     @DisplayName("빵 생성")
-    public void createBread() {
+    public void CreateBread() {
         String title = "title test";
         String description = "description test";
         String thumbnailUrl = "thumbnailUrl test";
+        Integer remainingQuantity = 1;
         Integer viewOrder = 1;
         LocalDate createdAt = LocalDate.now();
         LocalDate updatedAt = LocalDate.now();
@@ -37,6 +36,7 @@ public class BreadRepositoryTest {
                         .title(title)
                         .description(description)
                         .thumbnailUrl(thumbnailUrl)
+                        .remainingQuantity(remainingQuantity)
                         .viewOrder(viewOrder)
                         .createdAt(createdAt)
                         .updatedAt(updatedAt)
@@ -50,6 +50,7 @@ public class BreadRepositoryTest {
         assertThat(bread.getTitle()).isEqualTo(title);
         assertThat(bread.getDescription()).isEqualTo(description);
         assertThat(bread.getThumbnailUrl()).isEqualTo(thumbnailUrl);
+        assertThat(bread.getRemainingQuantity()).isEqualTo(remainingQuantity);
         assertThat(bread.getViewOrder()).isEqualTo(viewOrder);
         assertThat(bread.getCreatedAt()).isEqualTo(createdAt);
         assertThat(bread.getUpdatedAt()).isEqualTo(updatedAt);
