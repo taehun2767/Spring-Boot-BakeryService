@@ -45,10 +45,10 @@ public class Cart {
 
     @ColumnDefault("0")
     @Column(nullable = false)
-    private int itemCount;
+    private Integer itemCount;
 
     @Builder
-    Cart(User user, Bread bread, int itemCount){
+    Cart(User user, Bread bread, Integer itemCount){
         this.user = user;
         this.bread = bread;
         this.itemCount = itemCount;
