@@ -48,6 +48,21 @@ public class User {
     @Column(length =256)
     private String address;
 
+    public User changeLoginToken(String loginToken){
+        this.loginToken = loginToken;
+        return this;
+    }
+
+    public User changeAddress(String address){
+        this.address = address;
+        return this;
+    }
+
+    public User changePhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
     @Builder
     User(String name, String loginToken, String email, String snsId, String phoneNumber, String address){
         this.name = name;
