@@ -1,4 +1,4 @@
-package com.jm.jimnisbakery.dto;
+package com.jm.jimnisbakery.web.dto;
 
 import com.jm.jimnisbakery.domain.breads.Bread;
 import lombok.Builder;
@@ -17,18 +17,18 @@ public class BreadDto {
     public String title;
     public String description;
     public String thumbnailUrl;
-    public Integer viewOrder;
+    public Float reviewRating;
     public Integer remainingQuantity;
     public LocalDateTime createdAt;
     public LocalDateTime updatedAt;
     public String createdBy;
 
-    public BreadDto(String breadHashId, String title, String description, String thumbnailUrl, Integer viewOrder, Integer remainingQuantity, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy){
+    public BreadDto(String breadHashId, String title, String description, String thumbnailUrl, Float reviewRating, Integer remainingQuantity, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy){
         this.breadHashId = breadHashId;
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
-        this.viewOrder = viewOrder;
+        this.reviewRating = reviewRating;
         this.remainingQuantity = remainingQuantity;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -40,7 +40,7 @@ public class BreadDto {
         title = bread.getTitle();
         description = bread.getDescription();
         thumbnailUrl = bread.getThumbnailUrl();
-        viewOrder = bread.getViewOrder();
+        reviewRating = bread.getReviewRating();
         remainingQuantity = bread.getRemainingQuantity();
         createdAt = bread.getCreatedAt();
         updatedAt = bread.getUpdatedAt();

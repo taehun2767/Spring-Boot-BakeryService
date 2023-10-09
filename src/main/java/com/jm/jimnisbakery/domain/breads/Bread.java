@@ -8,6 +8,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.hashids.Hashids;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name="breads")
+@EntityListeners(AuditingEntityListener.class)
 //TODO cascade 및 N + 1 문제 공부 후 적용
 public class Bread {
 
@@ -44,8 +47,8 @@ public class Bread {
     @Column(length = 256)
     private String thumbnailUrl;
 
-    @ColumnDefault("0")
-    private Integer viewOrder;
+    @Column
+    private Float reviewRating;
 
     @ColumnDefault("0")
     private Integer remainingQuantity;
@@ -60,12 +63,12 @@ public class Bread {
     private String createdBy;
 
     @Builder
-    Bread(String title, String description, String thumbnailUrl, Integer remainingQuantity, Integer viewOrder, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy){
+    Bread(String title, String description, String thumbnailUrl, Integer remainingQuantity, Float reviewRating, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy){
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
         this.remainingQuantity = remainingQuantity;
-        this.viewOrder = viewOrder;
+        this.reviewRating = reviewRating;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.createdBy = createdBy;

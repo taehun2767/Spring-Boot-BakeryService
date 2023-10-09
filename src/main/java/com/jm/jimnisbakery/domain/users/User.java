@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.hashids.Hashids;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "users")

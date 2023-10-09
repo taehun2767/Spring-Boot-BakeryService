@@ -1,4 +1,4 @@
-package com.jm.jimnisbakery.dto;
+package com.jm.jimnisbakery.web.dto;
 
 import com.jm.jimnisbakery.domain.breads.Bread;
 import com.jm.jimnisbakery.domain.comments.Comment;
@@ -18,14 +18,15 @@ public class CommentDto {
     public String commentHashId;
     public User user;
     public Bread bread;
-    public String description;
+    public String content;
     public LocalDateTime createdAt;
     public LocalDateTime updatedAt;
 
-    public CommentDto(String commentHashId, User user, Bread bread, String description, LocalDateTime createdAt, LocalDateTime updatedAt){
+    public CommentDto(String commentHashId, User user, Bread bread, String content, LocalDateTime createdAt, LocalDateTime updatedAt){
         this.commentHashId = commentHashId;
         this.user = user;
         this.bread = bread;
+        this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -34,7 +35,7 @@ public class CommentDto {
         commentHashId = Comment.EncodeId(comment.getId());
         user = comment.getUser();
         bread = comment.getBread();
-        description = comment.getDescription();
+        content = comment.getContent();
         createdAt = comment.getCreatedAt();
         updatedAt = comment.getUpdatedAt();
     }

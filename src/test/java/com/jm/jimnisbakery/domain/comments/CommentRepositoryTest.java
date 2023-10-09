@@ -56,7 +56,7 @@ public class CommentRepositoryTest {
         String description = "description test";
         String thumbnailUrl = "thumbnailUrl test";
         Integer remainingQuantity = 1;
-        Integer viewOrder = 1;
+        Float reviewRating = 4.7F;
         LocalDateTime createdAt = LocalDateTime.now();
         LocalDateTime updatedAt = LocalDateTime.now();
         String createdBy = "admin";
@@ -67,7 +67,7 @@ public class CommentRepositoryTest {
                 .description(description)
                 .thumbnailUrl(thumbnailUrl)
                 .remainingQuantity(remainingQuantity)
-                .viewOrder(viewOrder)
+                .reviewRating(reviewRating)
                 .createdAt(createdAt)
                 .updatedAt(updatedAt)
                 .createdBy(createdBy)
@@ -77,7 +77,7 @@ public class CommentRepositoryTest {
         Comment comment = commentRepository.save(Comment.builder()
                         .user(user)
                         .bread(bread)
-                        .description("description")
+                        .content("content")
                         .createdAt(LocalDateTime.now())
                         .updatedAt(LocalDateTime.now())
                         .build());

@@ -1,4 +1,4 @@
-package com.jm.jimnisbakery.dto;
+package com.jm.jimnisbakery.web.dto;
 
 import com.jm.jimnisbakery.domain.breads.Bread;
 import com.jm.jimnisbakery.domain.carts.Cart;

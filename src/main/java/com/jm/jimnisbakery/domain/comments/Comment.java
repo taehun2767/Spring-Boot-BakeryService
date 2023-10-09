@@ -3,13 +3,13 @@ package com.jm.jimnisbakery.domain.comments;
 import com.jm.jimnisbakery.domain.breads.Bread;
 import com.jm.jimnisbakery.domain.users.User;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.Fetch;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hashids.Hashids;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "comments")
+@EntityListeners(AuditingEntityListener.class)
 //TODO cascade 및 N + 1 문제 공부 후 적용
 public class Comment {
 
@@ -45,8 +46,8 @@ public class Comment {
     @JoinColumn(name = "bread_id")
     private Bread bread;
 
-    @Column(length = 200)
-    private String description;
+    @Column(length = 300)
+    private String content;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -55,10 +56,10 @@ public class Comment {
     private LocalDateTime updatedAt;
 
     @Builder
-    Comment(User user, Bread bread, String description, LocalDateTime createdAt, LocalDateTime updatedAt){
+    Comment(User user, Bread bread, String content, LocalDateTime createdAt, LocalDateTime updatedAt){
         this.user = user;
         this. bread = bread;
-        this.description = description;
+        this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

@@ -30,7 +30,7 @@ public class BreadRepositoryTest {
         String description = "description test";
         String thumbnailUrl = "thumbnailUrl test";
         Integer remainingQuantity = 1;
-        Integer viewOrder = 1;
+        Float reviewRating = 4.9F;
         LocalDateTime createdAt = LocalDateTime.now();
         LocalDateTime updatedAt = LocalDateTime.now();
         String createdBy = "admin";
@@ -41,7 +41,7 @@ public class BreadRepositoryTest {
                         .description(description)
                         .thumbnailUrl(thumbnailUrl)
                         .remainingQuantity(remainingQuantity)
-                        .viewOrder(viewOrder)
+                        .reviewRating(reviewRating)
                         .createdAt(createdAt)
                         .updatedAt(updatedAt)
                         .createdBy(createdBy)
@@ -55,7 +55,7 @@ public class BreadRepositoryTest {
         assertThat(bread.getDescription()).isEqualTo(description);
         assertThat(bread.getThumbnailUrl()).isEqualTo(thumbnailUrl);
         assertThat(bread.getRemainingQuantity()).isEqualTo(remainingQuantity);
-        assertThat(bread.getViewOrder()).isEqualTo(viewOrder);
+        assertThat(bread.getReviewRating()).isEqualTo(reviewRating);
         assertThat(bread.getCreatedBy()).isEqualTo(createdBy);
     }
 }
