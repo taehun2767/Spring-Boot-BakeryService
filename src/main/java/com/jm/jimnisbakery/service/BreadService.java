@@ -1,5 +1,6 @@
 package com.jm.jimnisbakery.service;
 
+import com.jm.jimnisbakery.common.StatusType;
 import com.jm.jimnisbakery.domain.breads.Bread;
 import com.jm.jimnisbakery.domain.breads.BreadRepository;
 import com.jm.jimnisbakery.web.PageVo;
@@ -67,13 +68,24 @@ public class BreadService {
      */
     //TODO 빵 생성
     //TODO 빵 정보 수정
-    public Bread saveBread(Bread bread){
-        return breadRepository.save(bread);
+    public boolean saveBread(Bread bread){
+        Bread result = breadRepository.save(bread);
+        return result.getId() > 0;
     }
 
     //TODO 빵 삭제
-    public void deleteBreadById(Long breadId){
+    public int deleteBreadById(Long breadId){
         //TODO 어드민인지 authorization 체크
-        breadRepository.deleteById(breadId);
+        try{
+            if(breadRepository.existsById(breadId) == false)
+                return StatusType.NOT_FOUND_BREAD;
+            breadRepository.deleteById(breadId);
+            return StatusType.SUCCESS;
+        }
+        catch (Exception e){
+            logger.error("delete bread is failed : " + e.getMessage(), e);
+            return StatusType.FAIL;
+        }
+
     }
 }
