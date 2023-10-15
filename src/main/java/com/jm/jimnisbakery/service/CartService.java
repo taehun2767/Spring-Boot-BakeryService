@@ -1,5 +1,8 @@
 package com.jm.jimnisbakery.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CartService {
     //TODO 유저에 따른 장바구니 정보 가져오기
     //TODO 빵 장바구니 담기

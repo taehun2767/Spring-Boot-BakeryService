@@ -1,21 +1,56 @@
 package com.jm.jimnisbakery.service;
 
+import com.jm.jimnisbakery.common.ApiResult;
+import com.jm.jimnisbakery.common.StatusType;
 import com.jm.jimnisbakery.domain.users.User;
 import com.jm.jimnisbakery.domain.users.UserRepository;
-
+import com.jm.jimnisbakery.web.dto.UserDto;
+import com.jm.jimnisbakery.web.message.CreateUserRequest;
+import com.jm.jimnisbakery.web.message.UpdateUserRequest;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 import java.util.Optional;
 
+
+@Service
 public class UserService {
     private final UserRepository userRepository;
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
+    }
+
+    public ApiResult<UserDto> createUser(CreateUserRequest req){
+        User user = User.builder()
+                .name(req.getName())
+                .loginToken(req.getLoginToken())
+                .email(req.getEmail())
+                .snsId(req.getSnsId())
+                .phoneNumber(req.getPhoneNumber())
+                .address(req.getAddress())
+                .build();
+
+        User insertedUser = saveUser(user);
+        if(insertedUser.getId() <= 0)
+            return ApiResult.Failed(StatusType.FAIL);
+
+        return ApiResult.Succeed(new UserDto(insertedUser));
     }
 
     //TODO 유저 생성
     public User saveUser(User user){
         return userRepository.save(user);
     }
+    public ApiResult<UserDto> getUserDetails(Long userId){
+        User user = getUserById(userId);
+        if(user == null)
+            return ApiResult.Failed(StatusType.NOT_FOUND_USER);
+
+        return ApiResult.Succeed(new UserDto(user));
+    }
+
     //TODO 유저 세부사항 가져오기
     public User getUserById(Long userId){
         return userRepository.findById(userId).orElse(null);
@@ -29,19 +64,39 @@ public class UserService {
         return user.get().getAddress();
     }
 
-    //TODO 비밀 번호 변경
-    public User ChangeUserLoginToken(User user, String loginToken){
-        //로그인 토큰으로 변환하는 로직 필요
-        return user.changeLoginToken(loginToken);
-    }
+    public ApiResult<UserDto> updateUser(UpdateUserRequest req){
+        User user = getUserById(req.getUserId());
+        if(user == null)
+            return ApiResult.Failed(StatusType.NOT_FOUND_USER);
 
-    //TODO 주소 변경
-    public User changeUserAddress(User user, String address){
-        return user.changeAddress(address);
-    }
+        if(req.getName() != null)
+            user.setName(req.getName());
+        if(req.getLoginToken() != null)
+            user.setLoginToken(req.getLoginToken());
+        if(req.getEmail() != null)
+            user.setEmail(req.getEmail());
+        if(req.getPhoneNumber() != null)
+            user.setPhoneNumber(req.getPhoneNumber());
+        if(req.getAddress() != null)
+            user.setAddress(req.getAddress());
 
-    //TODO 전화번호 변경
-    public User changeUserPhoneNumber(User user, String phoneNumber){
-        return user.changePhoneNumber(phoneNumber);
+        User updatedUser = saveUser(user);
+        if(updatedUser.getId() <= 0)
+            return ApiResult.Failed(StatusType.FAIL);
+
+        return ApiResult.Succeed(new UserDto(updatedUser));
+    }
+    public int deleteUser(Long userId){
+        try{
+            User user = getUserById(userId);
+            if(user == null)
+                return StatusType.NOT_FOUND_USER;
+            userRepository.deleteById(userId);
+            return StatusType.SUCCESS;
+        }
+        catch (Exception e){
+            logger.error("delete user is failed" + e.getMessage(), e);
+            return StatusType.FAIL;
+        }
     }
 }

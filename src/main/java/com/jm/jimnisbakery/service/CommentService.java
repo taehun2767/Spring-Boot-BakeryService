@@ -1,5 +1,8 @@
 package com.jm.jimnisbakery.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CommentService {
 
     //TODO 댓글 생성
