@@ -1,11 +1,15 @@
 package com.jm.jimnisbakery.domain.users.domain;
 
+import com.jm.jimnisbakery.global.config.security.Authority;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hashids.Hashids;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,7 +40,7 @@ public class User {
     private String name;
 
     @Column(length = 256, nullable = false)
-    private String loginToken;
+    private String password;
 
     @Column(length = 64)
     private String email;
@@ -50,10 +54,10 @@ public class User {
     @Column(length =256)
     private String address;
 
-    public User changeLoginToken(String loginToken){
-        this.loginToken = loginToken;
-        return this;
-    }
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Authority> roles = new ArrayList<>();
+
 
     public User changeAddress(String address){
         this.address = address;
