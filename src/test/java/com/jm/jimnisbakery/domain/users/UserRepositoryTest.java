@@ -1,5 +1,7 @@
 package com.jm.jimnisbakery.domain.users;
 
+import com.jm.jimnisbakery.domain.users.dao.UserRepository;
+import com.jm.jimnisbakery.domain.users.domain.User;
 import jakarta.transaction.Transactional;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

@@ -1,10 +1,12 @@
 package com.jm.jimnisbakery.domain.carts;
 
 
-import com.jm.jimnisbakery.domain.breads.Bread;
-import com.jm.jimnisbakery.domain.breads.BreadRepository;
-import com.jm.jimnisbakery.domain.users.User;
-import com.jm.jimnisbakery.domain.users.UserRepository;
+import com.jm.jimnisbakery.domain.breads.domain.Bread;
+import com.jm.jimnisbakery.domain.breads.dao.BreadRepository;
+import com.jm.jimnisbakery.domain.carts.dao.CartRepository;
+import com.jm.jimnisbakery.domain.carts.domain.Cart;
+import com.jm.jimnisbakery.domain.users.domain.User;
+import com.jm.jimnisbakery.domain.users.dao.UserRepository;
 import jakarta.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.junit.Test;
@@ -14,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;

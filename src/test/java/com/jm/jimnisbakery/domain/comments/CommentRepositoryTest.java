@@ -1,19 +1,19 @@
 package com.jm.jimnisbakery.domain.comments;
 
-import com.jm.jimnisbakery.domain.breads.Bread;
-import com.jm.jimnisbakery.domain.breads.BreadRepository;
-import com.jm.jimnisbakery.domain.users.User;
-import com.jm.jimnisbakery.domain.users.UserRepository;
+import com.jm.jimnisbakery.domain.breads.domain.Bread;
+import com.jm.jimnisbakery.domain.breads.dao.BreadRepository;
+import com.jm.jimnisbakery.domain.comments.dao.CommentRepository;
+import com.jm.jimnisbakery.domain.comments.domain.Comment;
+import com.jm.jimnisbakery.domain.users.domain.User;
+import com.jm.jimnisbakery.domain.users.dao.UserRepository;
 import jakarta.transaction.Transactional;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
