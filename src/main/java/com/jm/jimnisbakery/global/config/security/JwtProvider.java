@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,8 @@ import java.util.List;
 @Component
 public class JwtProvider {
 
-    @Value("${jwt.secret.key}")
-    private String salt;
+//    @Value("${jwt.secret.key}")
+    private String salt = "secretadsfasdf";
 
     private Key secretKey;
 
@@ -33,7 +34,7 @@ public class JwtProvider {
 
     @PostConstruct
     protected void init() {
-        secretKey = Keys.hmacShakeyFor(salt.getBytes(StandardCharsets.UTF_8));
+        secretKey = Keys.hmacShaKeyFor(salt.getBytes(StandardCharsets.UTF_8));
     }
 
     public String createToken(String account, List<Authority> roles) {
@@ -49,11 +50,11 @@ public class JwtProvider {
     }
 
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getAccount(token));
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getEmail(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-    public String getAccount(String token) {
+    public String getEmail(String token) {
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
     }
 

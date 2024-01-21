@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class JwtLoginApiController {
     private final UserService userService;
 
-    @PostMapping()
-    public String signUp(){}
-
-    @PostMapping
-    public String login(){}
+//    @PostMapping()
+//    public String signUp(){}
+//
+//    @PostMapping
+//    public String login(){}
 
 }

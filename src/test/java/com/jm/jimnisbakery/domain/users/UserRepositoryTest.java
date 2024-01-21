@@ -34,7 +34,6 @@ public class UserRepositoryTest {
 
         User insertedUser = userRepository.save(User.builder()
                 .name(name)
-                .loginToken(loginToken)
                 .email(email)
                 .snsId(snsId)
                 .phoneNumber(phoneNumber)
@@ -49,7 +48,6 @@ public class UserRepositoryTest {
 
         //then
         assertThat(user.getName()).isEqualTo(name);
-        assertThat(user.getLoginToken()).isEqualTo(loginToken);
         assertThat(user.getEmail()).isEqualTo(email);
         assertThat(user.getPhoneNumber()).isEqualTo(phoneNumber);
         assertThat(user.getAddress()).isEqualTo(address);

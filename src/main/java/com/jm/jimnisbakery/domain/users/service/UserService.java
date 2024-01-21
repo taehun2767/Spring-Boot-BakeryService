@@ -25,7 +25,6 @@ public class UserService {
     public ApiResult<UserDto> createUser(CreateUserRequest req){
         User user = User.builder()
                 .name(req.getName())
-                .loginToken(req.getLoginToken())
                 .email(req.getEmail())
                 .snsId(req.getSnsId())
                 .phoneNumber(req.getPhoneNumber())
@@ -71,8 +70,6 @@ public class UserService {
 
         if(req.getName() != null)
             user.setName(req.getName());
-        if(req.getLoginToken() != null)
-            user.setLoginToken(req.getLoginToken());
         if(req.getEmail() != null)
             user.setEmail(req.getEmail());
         if(req.getPhoneNumber() != null)

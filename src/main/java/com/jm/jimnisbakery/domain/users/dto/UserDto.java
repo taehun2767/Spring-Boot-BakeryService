@@ -32,7 +32,6 @@ public class UserDto {
     public UserDto(User user){
         userHashId = User.EncodeId(user.getId());
         name = user.getName();
-        loginToken = user.getLoginToken();
         email = user.getEmail();
         snsId = user.getSnsId();
         phoneNumber = user.getPhoneNumber();

@@ -2,19 +2,18 @@ package com.jm.jimnisbakery.domain.users.domain;
 
 import com.jm.jimnisbakery.global.config.security.Authority;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hashids.Hashids;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
 @Table(name = "users")
 //TODO cascade 및 N + 1 문제 공부 후 적용
 public class User {
@@ -58,21 +57,16 @@ public class User {
     @Builder.Default
     private List<Authority> roles = new ArrayList<>();
 
-
-    public User changeAddress(String address){
-        this.address = address;
-        return this;
+    public void setRoles(List<Authority> roles){
+        this.roles = roles;
+        roles.forEach(r -> r.setUser(this));
     }
 
-    public User changePhoneNumber(String phoneNumber){
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
+
 
     @Builder
     User(String name, String loginToken, String email, String snsId, String phoneNumber, String address){
         this.name = name;
-        this.loginToken = loginToken;
         this.email = email;
         this.snsId = snsId;
         this.phoneNumber = phoneNumber;
