@@ -14,6 +14,7 @@ spring:
     username: root
     password: 1111
 
+
   devtools:
     livereload:
       enabled: true
@@ -35,5 +36,5 @@ logging:
     org:
       type:
         descriptor:
-          sql: true
-      SQL: true
+          sql: DEBUG
+

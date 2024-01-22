@@ -33,6 +33,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+                .formLogin(login -> login	// form 방식 로그인 사용
+                        .defaultSuccessUrl("/main/", true)	// 성공 시 dashboard로
+                        .permitAll()	// 대시보드 이동이 막히면 안되므로 얘는 허용
+                )
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
